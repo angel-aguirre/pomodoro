@@ -1,0 +1,50 @@
+/* APPROACH MOBILE FIRST */
+.main-clr {
+	background-color: var(--dark-blue);
+}
+
+.shadow-clr {
+	background-color: var(--dark-blue-secondary);
+}
+
+.red-clr {
+	background-color: var(--red);
+}
+
+.green-clr {
+	background-color: var(--green);
+}
+
+.border-green {
+	border: 5px solid var(--green);
+}
+
+.border-red {
+	border: 5px solid var(--red);
+}
+
+.shadow-box {
+    width: 5em;
+    height: 5em;
+	border-radius: 10%;
+	white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    white-space: pre-wrap;       /* css-3 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+    white-space: -webkit-pre-wrap; /* Newer versions of Chrome/Safari*/
+    /* word-break: break-all; */
+    white-space: normal;
+}
+
+.d-flex {
+	display: flex;
+}
+
+.d-none {
+	display: none;
+}
+
+.m-b {
+	margin-bottom: 7vh;
+}
