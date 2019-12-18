@@ -48,13 +48,13 @@
 		<nav class="container m-b">
 			<ul>
 				<li>
-					<span class="shadow-box shadow-clr">Work</span>
+					<span id="work-btn" class="shadow-box shadow-clr">Work</span>
 				</li>
 				<li>
-					<span class="shadow-box shadow-clr">Short Break</span>
+					<span id="short-break-btn" class="shadow-box shadow-clr">Short Break</span>
 				</li>
 				<li>
-					<span class="shadow-box shadow-clr">Long Break</span>
+					<span id="long-break-btn" class="shadow-box shadow-clr">Long Break</span>
 				</li>
 			</ul>
 		</nav>
@@ -66,12 +66,13 @@
 				<div class="border border-red">
 					<div class="center main-clr">
 						<span class="time">25:00</span>
+						<span class="time-description">WORK</span>
 					</div>
 				</div>
 			</div>
 
 			<div class="controls shadow-clr">
-				<a href="#" class="play">
+				<a href="#" id="play-btn" class="play">
 					<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 							width="163.861px" height="163.861px" viewBox="0 0 163.861 163.861" style="enable-background:new 0 0 163.861 163.861;"
 							xml:space="preserve">
@@ -81,7 +82,7 @@
 						</g>
 				   </svg>				   
 				</a>
-				<a href="#" class="pause d-none">
+				<a href="#" id="pause-btn" class="pause d-none">
 					<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 						width="45.975px" height="45.975px" viewBox="0 0 45.975 45.975" style="enable-background:new 0 0 45.975 45.975;"
 						xml:space="preserve">
@@ -93,7 +94,7 @@
 						</g>
 				   	</svg>				   
 				</a>
-				<a href="#" class="restart">
+				<a href="#" id="restart-btn" class="restart">
 					<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 						width="305.836px" height="305.836px" viewBox="0 0 305.836 305.836" style="enable-background:new 0 0 305.836 305.836;"
 						xml:space="preserve">
@@ -111,6 +112,7 @@
 		</div>
 		<!-- div.container end -->
 
+		<audio id="alarm-audio" src="assets/audio/alarm_sound.mp3"></audio>
 
 		<!-- JavaScript -->
 		<script src="js/app.js"></script>

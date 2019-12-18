@@ -67,7 +67,7 @@ div.center {
 }
 
 div.shadow {
-	padding: 1em;
+	padding: 1.5em;
 	margin: 0 auto;
 }
 
@@ -79,6 +79,7 @@ div.center {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	flex-direction: column;
 }
 
 span.time {
@@ -104,4 +105,9 @@ div.title-shadow {
 	width: 17em;
 	border-radius: 15px;
 	margin: -1.5em auto 0 auto;
+}
+
+span.time-description {
+	font-size: 1.4em;
+	text-transform: uppercase;
 }
