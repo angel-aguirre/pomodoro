@@ -1,10 +1,14 @@
 <template>
-    <div>App</div>
+    <AppHeader />
 </template>
 
-<script>
-export default {
-    name: 'App',
-    components: {},
-};
+<script setup>
+import AppHeader from '@/components/layout/AppHeader.vue';
 </script>
+
+<style>
+body {
+    @apply bg-main;
+    @apply text-white;
+}
+</style>
