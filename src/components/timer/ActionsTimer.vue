@@ -3,7 +3,7 @@
         class="flex justify-evenly items-center -mt-12 mx-auto w-72 h-16 rounded-3xl bg-main-light"
     >
         <!-- Play -->
-        <TimerButton v-show="!isPaused" @click="isPaused = !isPaused">
+        <TimerButton v-show="!isPaused" @click="play">
             <svg
                 version="1.1"
                 x="0px"
@@ -23,7 +23,7 @@
             </svg>
         </TimerButton>
         <!-- Pause -->
-        <TimerButton v-show="isPaused" @click="isPaused = !isPaused">
+        <TimerButton v-show="isPaused" @click="pause">
             <svg
                 version="1.1"
                 x="0px"
@@ -47,7 +47,7 @@
             </svg>
         </TimerButton>
         <!-- Replay -->
-        <TimerButton>
+        <TimerButton @click="replay">
             <svg
                 version="1.1"
                 x="0px"
@@ -74,10 +74,26 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { defineEmits, ref } from 'vue';
 import TimerButton from '@/components/ui/TimerButton.vue';
 
 const isPaused = ref(false);
+
+const emit = defineEmits(['play', 'pause', 'replay']);
+
+const play = () => {
+    isPaused.value = !isPaused.value;
+    emit('play');
+};
+
+const pause = () => {
+    isPaused.value = !isPaused.value;
+    emit('pause');
+};
+
+const replay = () => {
+    emit('replay');
+};
 </script>
 
 <style scoped>
