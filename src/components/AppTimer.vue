@@ -1,6 +1,6 @@
 <template>
     <MainTimer :time="timeFormated" />
-    <ActionsTimer @play="play" @pause="pause" @replay="replay" />
+    <ActionsTimer @play="play" @pause="pause" @restart="restart" />
 </template>
 
 <script setup>
@@ -33,8 +33,11 @@ const pause = () => {
     timer.value = null;
 };
 
-const replay = () => {
-    console.log('replay');
+const restart = () => {
+    clearInterval(timer.value);
+    timer.value = null;
+    mins.value = defaultSettings.minsWork;
+    secs.value = 0;
 };
 
 function runTimer() {

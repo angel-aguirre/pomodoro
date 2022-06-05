@@ -46,8 +46,8 @@
                 </g>
             </svg>
         </TimerButton>
-        <!-- Replay -->
-        <TimerButton @click="replay">
+        <!-- Restart -->
+        <TimerButton @click="restart">
             <svg
                 version="1.1"
                 x="0px"
@@ -79,7 +79,7 @@ import TimerButton from '@/components/ui/TimerButton.vue';
 
 const isPaused = ref(false);
 
-const emit = defineEmits(['play', 'pause', 'replay']);
+const emit = defineEmits(['play', 'pause', 'restart']);
 
 const play = () => {
     isPaused.value = !isPaused.value;
@@ -91,8 +91,8 @@ const pause = () => {
     emit('pause');
 };
 
-const replay = () => {
-    emit('replay');
+const restart = () => {
+    emit('restart');
 };
 </script>
 
