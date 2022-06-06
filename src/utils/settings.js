@@ -1,5 +1,14 @@
 export const defaultSettings = {
-    minsWork: 25,
-    minsShortBreak: 5,
-    minsLongBreak: 15,
+    work: {
+        mins: 25,
+        label: 'WORK',
+    },
+    shortBreak: {
+        mins: 5,
+        label: 'SHORT BREAK',
+    },
+    longBreak: {
+        mins: 15,
+        label: 'LONG BREAK',
+    },
 };

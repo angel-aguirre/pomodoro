@@ -74,12 +74,21 @@
 </template>
 
 <script setup>
-import { defineEmits, ref } from 'vue';
+import { defineEmits, defineProps, ref, toRefs, watch } from 'vue';
 import TimerButton from '@/components/ui/TimerButton.vue';
 
 const isPaused = ref(false);
 
 const emit = defineEmits(['play', 'pause', 'restart']);
+
+const props = defineProps({
+    timerFinished: {
+        type: Boolean,
+        default: true,
+    },
+});
+
+const { timerFinished } = toRefs(props);
 
 const play = () => {
     isPaused.value = !isPaused.value;
@@ -94,6 +103,10 @@ const pause = () => {
 const restart = () => {
     emit('restart');
 };
+
+watch(timerFinished, (value) => {
+    if (value) isPaused.value = false;
+});
 </script>
 
 <style scoped>

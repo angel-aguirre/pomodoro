@@ -1,18 +1,34 @@
 <template>
-    <MainTimer :time="timeFormated" />
-    <ActionsTimer @play="play" @pause="pause" @restart="restart" />
+    <MainTimer :time="timeFormated" :description="actionLabel" />
+    <ActionsTimer
+        :timerFinished="timerFinished"
+        @play="play"
+        @pause="pause"
+        @restart="restart"
+    />
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { computed, defineProps, ref, toRefs, watch } from 'vue';
 import { defaultSettings } from '@/utils/settings.js';
 import MainTimer from '@/components/timer/MainTimer.vue';
 import ActionsTimer from '@/components/timer/ActionsTimer.vue';
 
-const mins = ref(defaultSettings.minsWork);
+const mins = ref(defaultSettings.work.mins);
 const secs = ref(0);
 const timer = ref(null);
 const started = ref(false);
+const actionLabel = ref('Work');
+const timerFinished = ref(false);
+
+const props = defineProps({
+    actionType: {
+        type: String,
+        default: 'work',
+    },
+});
+
+const { actionType } = toRefs(props);
 
 const timeFormated = computed(() => {
     return ('0' + mins.value).slice(-2) + ':' + ('0' + secs.value).slice(-2);
@@ -21,6 +37,7 @@ const timeFormated = computed(() => {
 const play = () => {
     if (!started.value) {
         started.value = true;
+        timerFinished.value = false;
     }
 
     timer.value = setInterval(function () {
@@ -36,14 +53,18 @@ const pause = () => {
 const restart = () => {
     clearInterval(timer.value);
     timer.value = null;
-    mins.value = defaultSettings.minsWork;
+    started.value = false;
+    timerFinished.value = true;
+    mins.value = defaultSettings.work.mins;
     secs.value = 0;
 };
 
-function runTimer() {
+const runTimer = () => {
     if (mins.value === 0 && secs.value === 0) {
         clearInterval(timer.value);
         timer.value = null;
+        started.value = false;
+        timerFinished.value = true;
         return;
     }
 
@@ -53,5 +74,18 @@ function runTimer() {
     } else {
         secs.value--;
     }
-}
+};
+
+watch(actionType, (nuevaAccion) => {
+    const config = defaultSettings[nuevaAccion];
+
+    clearInterval(timer.value);
+    timer.value = null;
+    started.value = false;
+    timerFinished.value = true;
+
+    actionLabel.value = config.label;
+    mins.value = config.mins;
+    secs.value = 0;
+});
 </script>

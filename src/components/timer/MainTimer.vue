@@ -3,7 +3,12 @@
         class="p-6 my-0 mx-auto mt-10 rounded-[50%] w-72 h-72 text-center bg-main-light"
     >
         <div
-            class="rounded-[50%] w-60 h-60 text-center border-8 border-soft-red bg-main"
+            :class="[
+                description.toLowerCase() == 'work'
+                    ? 'border-soft-green'
+                    : 'border-soft-red',
+            ]"
+            class="rounded-[50%] w-60 h-60 text-center border-8 bg-main"
         >
             <div
                 class="flex items-center justify-center flex-col rounded-[50%] w-60 h-60 text-center -m-2"
