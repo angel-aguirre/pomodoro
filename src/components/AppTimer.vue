@@ -65,6 +65,7 @@ const runTimer = () => {
         timer.value = null;
         started.value = false;
         timerFinished.value = true;
+        playAudio();
         return;
     }
 
@@ -74,6 +75,11 @@ const runTimer = () => {
     } else {
         secs.value--;
     }
+};
+
+const playAudio = () => {
+    const audio = new Audio(require('@/assets/audio/alarm_sound.mp3'));
+    audio.play();
 };
 
 watch(actionType, (nuevaAccion) => {
