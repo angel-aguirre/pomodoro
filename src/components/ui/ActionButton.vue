@@ -1,6 +1,6 @@
 <template>
     <button
-        class="text-center uppercase text-sm my-0 mx-2 py-2 px-0 w-20 h-20 rounded-xl bg-main-light"
+        class="text-center uppercase text-xs sm:text-lg my-0 mx-2 p-2 w-20 md:w-40 h-20 md:h-24 rounded-xl bg-main-light"
     >
         <span class="w-20 h-20 break-words">{{ label }}</span>
     </button>

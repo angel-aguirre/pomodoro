@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-around mt-12 px-5">
+    <div class="flex justify-center mt-12 md:mt-16 px-5 sm:gap-10 md:gap-2">
         <ActionButton label="Work" @click="work" />
         <ActionButton label="Short Break" @click="shortBreak" />
         <ActionButton label="Long Break" @click="longBreak" />

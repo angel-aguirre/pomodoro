@@ -1,6 +1,6 @@
 <template>
     <div
-        class="flex justify-evenly items-center -mt-12 mx-auto w-72 h-16 rounded-3xl bg-main-light"
+        class="flex justify-evenly items-center -mt-12 mb-6 mx-auto w-72 h-16 rounded-3xl bg-main-light"
     >
         <!-- Play -->
         <TimerButton v-show="!isPaused" @click="play">

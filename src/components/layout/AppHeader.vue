@@ -1,6 +1,6 @@
 <template>
-    <header class="w-full my-0 mx-auto pt-2 text-center">
-        <div class="flex justify-center items-center">
+    <header class="w-full lg:w-1000 my-0 mx-auto pt-2 text-center">
+        <div class="flex justify-center lg:justify-start items-center">
             <h1 class="text-3xl font-bold mt-3 mr-2">Pomodoro</h1>
             <svg
                 class="fill-white m-0 -mb-3 h-12 w-12"
@@ -38,7 +38,7 @@
             </svg>
         </div>
         <div
-            class="flex justify-center h-8 w-72 -mt-6 mb-0 mx-auto rounded-2xl bg-main-light"
+            class="flex justify-start h-8 w-72 -mt-6 mb-0 mx-auto lg:mx-0 lg:-ml-7 rounded-2xl bg-main-light"
         ></div>
     </header>
 </template>

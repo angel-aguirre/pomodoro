@@ -8,6 +8,12 @@ module.exports = {
                 'soft-red': '#FC4E4C',
                 'soft-green': '#05EB8D',
             },
+            borderRadius: {
+                50: '50%',
+            },
+            width: {
+                1000: '1000px',
+            },
         },
     },
     plugins: [],
