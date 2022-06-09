@@ -38,6 +38,7 @@ const play = () => {
     if (!started.value) {
         started.value = true;
         timerFinished.value = false;
+        setConfig();
     }
 
     timer.value = setInterval(function () {
@@ -52,19 +53,14 @@ const pause = () => {
 
 const restart = () => {
     clearInterval(timer.value);
-    timer.value = null;
-    started.value = false;
-    timerFinished.value = true;
-    mins.value = defaultSettings.work.mins;
-    secs.value = 0;
+    resetValues();
+    setConfig();
 };
 
 const runTimer = () => {
     if (mins.value === 0 && secs.value === 0) {
         clearInterval(timer.value);
-        timer.value = null;
-        started.value = false;
-        timerFinished.value = true;
+        resetValues();
         playAudio();
         return;
     }
@@ -83,15 +79,24 @@ const playAudio = () => {
 };
 
 watch(actionType, (nuevaAccion) => {
-    const config = defaultSettings[nuevaAccion];
-
     clearInterval(timer.value);
+    resetValues();
+    setConfig(nuevaAccion);
+});
+
+const resetValues = () => {
     timer.value = null;
     started.value = false;
     timerFinished.value = true;
+};
+
+const setConfig = (nuevaAccion = null) => {
+    if (!nuevaAccion) nuevaAccion = actionType.value;
+
+    const config = defaultSettings[nuevaAccion];
 
     actionLabel.value = config.label;
     mins.value = config.mins;
     secs.value = 0;
-});
+};
 </script>
