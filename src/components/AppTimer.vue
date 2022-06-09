@@ -11,6 +11,7 @@
 <script setup>
 import { computed, defineProps, ref, toRefs, watch } from 'vue';
 import { defaultSettings } from '@/utils/settings.js';
+import { formatTime } from '@/utils/format.js';
 import MainTimer from '@/components/timer/MainTimer.vue';
 import ActionsTimer from '@/components/timer/ActionsTimer.vue';
 
@@ -30,9 +31,7 @@ const props = defineProps({
 
 const { actionType } = toRefs(props);
 
-const timeFormated = computed(() => {
-    return ('0' + mins.value).slice(-2) + ':' + ('0' + secs.value).slice(-2);
-});
+const timeFormated = computed(() => formatTime(mins.value, secs.value));
 
 const play = () => {
     if (!started.value) {
@@ -43,6 +42,7 @@ const play = () => {
 
     timer.value = setInterval(function () {
         runTimer();
+        updateTitle();
     }, 1000);
 };
 
@@ -88,6 +88,7 @@ const resetValues = () => {
     timer.value = null;
     started.value = false;
     timerFinished.value = true;
+    updateTitle();
 };
 
 const setConfig = (nuevaAccion = null) => {
@@ -98,5 +99,16 @@ const setConfig = (nuevaAccion = null) => {
     actionLabel.value = config.label;
     mins.value = config.mins;
     secs.value = 0;
+};
+
+const updateTitle = () => {
+    if (timerFinished.value) {
+        document.title = `${process.env.VUE_APP_TITLE}`;
+        return;
+    }
+
+    document.title = `(${formatTime(mins.value, secs.value)}) ${
+        process.env.VUE_APP_TITLE
+    }`;
 };
 </script>
