@@ -3,7 +3,7 @@
         class="flex justify-evenly items-center -mt-12 mb-6 mx-auto w-72 h-16 rounded-3xl bg-main-light"
     >
         <!-- Play -->
-        <TimerButton v-show="!isPaused" @click="play">
+        <TimerButton v-show="!isPaused" @click="play" label="Play">
             <svg
                 version="1.1"
                 x="0px"
@@ -23,7 +23,7 @@
             </svg>
         </TimerButton>
         <!-- Pause -->
-        <TimerButton v-show="isPaused" @click="pause">
+        <TimerButton v-show="isPaused" @click="pause" label="Pause">
             <svg
                 version="1.1"
                 x="0px"
@@ -47,7 +47,7 @@
             </svg>
         </TimerButton>
         <!-- Restart -->
-        <TimerButton @click="restart">
+        <TimerButton @click="restart" label="Restart">
             <svg
                 version="1.1"
                 x="0px"
