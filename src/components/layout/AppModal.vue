@@ -18,7 +18,7 @@
                         class="relative bg-main-light rounded-lg text-left overflow-hidden shadow-xl transform transition-all my-8 max-w-lg w-full"
                     >
                         <div class="px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-                            <div class="flex justify-between">
+                            <div class="flex justify-between mb-2 font-bold">
                                 <slot name="title">Title</slot>
                                 <button @click="toggleModal">
                                     <svg
