@@ -11,4 +11,7 @@ export const defaultSettings = {
         mins: 15,
         label: 'LONG BREAK',
     },
+    autoStartBreak: false,
+    autoStartPomodoro: false,
+    longBreakInterval: 4,
 };

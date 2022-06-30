@@ -8,6 +8,7 @@
                     <div class="flex flex-col w-24">
                         <label class="text-sm" for="pomodoro">Pomodoro</label>
                         <input
+                            v-model="settings.work.mins"
                             class="text-black p-1 rounded text-right outline-none appearance-none"
                             id="pomodoro"
                             type="number"
@@ -18,6 +19,7 @@
                             >Short Break</label
                         >
                         <input
+                            v-model="settings.shortBreak.mins"
                             class="text-black p-1 rounded text-right outline-none appearance-none"
                             id="short-break"
                             type="number"
@@ -28,6 +30,7 @@
                             >Long Break</label
                         >
                         <input
+                            v-model="settings.longBreak.mins"
                             class="text-black p-1 rounded text-right outline-none appearance-none"
                             id="long-break"
                             type="number"
@@ -42,6 +45,8 @@
                     class="flex items-center cursor-pointer relative"
                 >
                     <input
+                        :checked="settings.autoStartBreak"
+                        v-model="settings.autoStartBreak"
                         type="checkbox"
                         id="switch-auto-breaks"
                         class="sr-only"
@@ -58,6 +63,8 @@
                     class="flex items-center cursor-pointer relative"
                 >
                     <input
+                        :checked="settings.autoStartPomodoro"
+                        v-model="settings.autoStartPomodoro"
                         type="checkbox"
                         id="switch-auto-pomodoros"
                         class="sr-only"
@@ -72,6 +79,7 @@
                     >Long Break interval</label
                 >
                 <input
+                    v-model="settings.longBreakInterval"
                     class="text-black p-1 rounded text-right outline-none appearance-none w-1/3"
                     id="long-break-interval"
                     type="number"
@@ -83,6 +91,13 @@
 
 <script setup>
 import AppModal from '@/components/layout/AppModal.vue';
+import { useSettings } from '@/stores/settings.js';
+
+const settings = useSettings();
+
+settings.$subscribe((mutation, state) => {
+    localStorage.setItem('pomodoro', JSON.stringify(state));
+});
 </script>
 
 <style>
