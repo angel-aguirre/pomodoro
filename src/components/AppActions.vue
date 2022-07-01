@@ -7,12 +7,12 @@
 </template>
 
 <script setup>
-import { defineEmits } from 'vue';
+import { useTimer } from '@/stores/timer.js';
 import ActionButton from '@/components/ui/ActionButton.vue';
 
-const emit = defineEmits(['action']);
+const timerStore = useTimer();
 
-const work = () => emit('action', 'work');
-const shortBreak = () => emit('action', 'shortBreak');
-const longBreak = () => emit('action', 'longBreak');
+const work = () => timerStore.setAction('work');
+const shortBreak = () => timerStore.setAction('shortBreak');
+const longBreak = () => timerStore.setAction('longBreak');
 </script>

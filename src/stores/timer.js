@@ -5,7 +5,7 @@ import { useSettings } from '@/stores/settings.js';
 export const useTimer = defineStore('timer', {
     state: () => {
         return {
-            isPaused: false,
+            isPaused: true,
             isFinished: false,
             isStarted: false,
             mins: 0,
@@ -23,11 +23,12 @@ export const useTimer = defineStore('timer', {
     actions: {
         play() {
             if (!this.isStarted) {
+                this.setAction(this.action);
                 this.isStarted = true;
                 this.isFinished = false;
-                this.setAction(this.action);
             }
 
+            this.isPaused = false;
             this.interval = setInterval(() => {
                 this.runTimer();
                 this.updateTitle();
@@ -36,10 +37,9 @@ export const useTimer = defineStore('timer', {
         pause() {
             clearInterval(this.interval);
             this.interval = null;
+            this.isPaused = true;
         },
         restart() {
-            clearInterval(this.interval);
-            this.resetValues();
             this.setAction(this.action);
         },
         setAction(action) {
@@ -48,6 +48,7 @@ export const useTimer = defineStore('timer', {
             this.action = action;
             this.mins = settingsStore[this.action].mins;
             this.label = settingsStore[this.action].label;
+            this.secs = 0;
 
             this.resetValues();
         },
@@ -67,9 +68,11 @@ export const useTimer = defineStore('timer', {
             }
         },
         resetValues() {
+            clearInterval(this.interval);
             this.interval = null;
             this.isStarted = false;
             this.isFinished = true;
+            this.isPaused = true;
             this.updateTitle();
         },
         updateTitle() {

@@ -3,7 +3,11 @@
         class="flex justify-evenly items-center -mt-12 mb-6 mx-auto w-72 h-16 rounded-3xl bg-main-light"
     >
         <!-- Play -->
-        <TimerButton v-show="!isPaused" @click="play" label="Play">
+        <TimerButton
+            v-show="timerStore.isPaused"
+            @click="timerStore.play()"
+            label="Play"
+        >
             <svg
                 version="1.1"
                 x="0px"
@@ -23,7 +27,11 @@
             </svg>
         </TimerButton>
         <!-- Pause -->
-        <TimerButton v-show="isPaused" @click="pause" label="Pause">
+        <TimerButton
+            v-show="!timerStore.isPaused"
+            @click="timerStore.pause()"
+            label="Pause"
+        >
             <svg
                 version="1.1"
                 x="0px"
@@ -47,7 +55,7 @@
             </svg>
         </TimerButton>
         <!-- Restart -->
-        <TimerButton @click="restart" label="Restart">
+        <TimerButton @click="timerStore.restart()" label="Restart">
             <svg
                 version="1.1"
                 x="0px"
@@ -74,39 +82,10 @@
 </template>
 
 <script setup>
-import { defineEmits, defineProps, ref, toRefs, watch } from 'vue';
+import { useTimer } from '@/stores/timer.js';
 import TimerButton from '@/components/ui/TimerButton.vue';
 
-const isPaused = ref(false);
-
-const emit = defineEmits(['play', 'pause', 'restart']);
-
-const props = defineProps({
-    timerFinished: {
-        type: Boolean,
-        default: true,
-    },
-});
-
-const { timerFinished } = toRefs(props);
-
-const play = () => {
-    isPaused.value = !isPaused.value;
-    emit('play');
-};
-
-const pause = () => {
-    isPaused.value = !isPaused.value;
-    emit('pause');
-};
-
-const restart = () => {
-    emit('restart');
-};
-
-watch(timerFinished, (value) => {
-    if (value) isPaused.value = false;
-});
+const timerStore = useTimer();
 </script>
 
 <style scoped>

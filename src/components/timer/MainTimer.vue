@@ -4,7 +4,7 @@
     >
         <div
             :class="[
-                description.toLowerCase() == 'work'
+                timerStore.label == 'WORK'
                     ? 'border-soft-green'
                     : 'border-soft-red',
             ]"
@@ -13,24 +13,19 @@
             <div
                 class="flex items-center justify-center flex-col rounded-50 w-60 h-60 text-center -m-2"
             >
-                <span class="text-5xl md:text-6xl">{{ time }}</span>
-                <span class="text-lg md:text-2xl">{{ description }}</span>
+                <span class="text-5xl md:text-6xl">{{
+                    timerStore.timeFormated
+                }}</span>
+                <span class="text-lg md:text-2xl">{{ timerStore.label }}</span>
             </div>
         </div>
     </div>
 </template>
 
 <script setup>
-import { defineProps } from 'vue';
+import { useTimer } from '@/stores/timer.js';
 
-const props = defineProps({
-    time: {
-        type: String,
-        default: '00:00',
-    },
-    description: {
-        type: String,
-        default: 'WORK',
-    },
-});
+const timerStore = useTimer();
+
+timerStore.setAction('work');
 </script>
