@@ -14,4 +14,5 @@ export const defaultSettings = {
     autoStartBreak: false,
     autoStartPomodoro: false,
     longBreakInterval: 4,
+    alarmFileName: 'alarm_sound.mp3',
 };

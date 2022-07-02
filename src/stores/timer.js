@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { formatTime } from '@/utils/format.js';
+import { audioPlayer } from '@/utils/player.js';
 import { useSettings } from '@/stores/settings.js';
 
 export const useTimer = defineStore('timer', {
@@ -54,9 +55,12 @@ export const useTimer = defineStore('timer', {
         },
         runTimer() {
             if (this.mins === 0 && this.secs === 0) {
+                const settingsStore = useSettings();
+                const player = audioPlayer(settingsStore.alarmFileName);
+                player.play();
+
                 clearInterval(this.interval);
                 this.resetValues();
-                // play audio here
                 return;
             }
 
