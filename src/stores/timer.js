@@ -14,6 +14,7 @@ export const useTimer = defineStore('timer', {
             label: null,
             action: null,
             interval: null,
+            currentBreakInterval: 0,
         };
     },
     getters: {
@@ -59,8 +60,7 @@ export const useTimer = defineStore('timer', {
                 const player = audioPlayer(settingsStore.alarmFileName);
                 player.play();
 
-                clearInterval(this.interval);
-                this.resetValues();
+                this.checkAutoStart();
                 return;
             }
 
@@ -88,6 +88,39 @@ export const useTimer = defineStore('timer', {
             document.title = `(${formatTime(this.mins, this.secs)}) ${
                 process.env.VUE_APP_TITLE
             }`;
+        },
+        applyAutoStart() {
+            const settingsStore = useSettings();
+
+            if (settingsStore.autoStartBreak && this.action == 'work') {
+                this.currentBreakInterval += 1;
+
+                if (
+                    this.currentBreakInterval != settingsStore.longBreakInterval
+                ) {
+                    this.setAction('shortBreak');
+                } else {
+                    this.setAction('longBreak');
+                }
+
+                this.play();
+                return;
+            }
+
+            if (
+                settingsStore.autoStartPomodoro &&
+                (this.action == 'shortBreak' || this.action == 'longBreak')
+            ) {
+                if (
+                    this.currentBreakInterval == settingsStore.longBreakInterval
+                )
+                    this.currentBreakInterval = 0;
+                this.setAction('work');
+                this.play();
+                return;
+            }
+
+            this.resetValues();
         },
     },
 });
